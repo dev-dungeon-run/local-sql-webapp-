@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Website Posts</title>
+</head>
+<body>
+  <h1>Posts</h1>
+  <ul id="posts"></ul>
+
+  <script>
+    async function fetchPosts() {
+      // this assumes you have a backend that serves the database data
+      const res = await fetch('http://localhost:3000/posts');
+      const posts = await res.json();
+      const ul = document.getElementById('posts');
+      posts.forEach(post => {
+        const li = document.createElement('li');
+        li.textContent = post.title + ': ' + post.content;
+        ul.appendChild(li);
+      });
+    }
+
+    fetchPosts();
+  </script>
+</body>
+</html>
